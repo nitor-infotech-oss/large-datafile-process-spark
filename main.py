@@ -30,7 +30,6 @@ class Transformations:
                         .collect())
 
             for header in [tag[1:] for tag in hashtags]:
-                # Finding Rows which contains header values only  
                 df_new = df.filter(df._c0.contains(header))
 
                 null_counts = df_new.select([f.count(f.when(f.col(c).isNull(), c)).alias(c) for c in df_new.columns]).collect()[0].asDict()
